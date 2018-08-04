@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>CHATROOM</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+    <!-- 页面布局 -->
+	<div class="wrapper">
+            <div class="banner">
+                <h2 class="title">CHATROOM</h2>
+                <!-- <span id="status"></span> -->
+                <div id="onlineList">
+                    <!-- <span id="status"></span> -->
+                    <p  class="list-title">onlinelist<span id="status"></span></p>
+                    <ul class="list">
+                       
+                    </ul>
+                </div>
+            </div>
+            <div id="historyMsg">
+                <ul id="newsPane">
+                    <li>
+                    </li>
+                </ul>
+            </div>
+            <!-- 私聊提示框 -->
+            <div id="invitation">
+               
+            </div>
+            <div class="controls" >
+                <div class="items">
+                    <input id="colorStyle" type="color" placeHolder='#000' title="font color" />
+                    <input id="emoji" type="button" value="emoji" title="emoji" />
+                    <label for="sendImage" class="imageLable">
+                        <input id="imgBtn" type="button" value="image"  />
+                        <input id="sendImage" type="file" value="image"/>
+                    </label>
+                    <input id="clearBtn" type="button" value="clear" title="clear screen" />
+                    <label id="bgimgLabel" for="bgImage">
+                        <input id="bg-btn" type="button" value="bgImage">
+                        <input id="bgImage" type="file" value=""/>
+                    </label>
+                </div>
+                <textarea id="messageInput" placeHolder="enter to send"></textarea>
+                <input id="sendBtn" type="button" value="SEND">
+                <div id="emojiWrapper">
+                </div>
+            </div>
+        </div>
+        <div id="loginWrapper">
+            <p id="info">connecting to server...</p>
+            <div id="nickWrapper">
+                <input type="text" placeHolder="nickname" id="nicknameInput" />
+                <input type="button" value="Go" id="loginBtn" />
+            </div>
+        </div>
+        <footer>
+            <small>view on <a href="https://github.com/CoolMrp">GitHub</a> | <a href="http://www.cnblogs.com/wmrp/">Blog</a></small>
+        </footer>
+	<!-- 引入socket.io.js文件 -->
+	<script src="/js/socket.io.js"></script>
+	<script src="js/chat.js"></script>
+	<script>
+        /**REMOVE ME IF YOU CANT ACCESS GOOGLE SERVICE**/
+          // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          // ga('create', 'UA-46794744-7', 'hichat.herokuapp.com');
+          // ga('send', 'pageview');
+        /**REMOVE END**/
+
+    </script>
+</body>
