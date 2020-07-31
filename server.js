@@ -4,7 +4,8 @@ const express = require('express'), //引入express模块
 app.use('/',express.static(__dirname+'/public'));//指定静态HTML文件位置
 io = require('socket.io').listen(server); //引入socket并监听服务器
 server.listen('999'); //监听999端口号
-let users = []; //所有用户
+let users = [], //所有用户
+		timer;
 io.on('connection',socket=>{ //监听前端页面的连接
 	socket.on('nickname',(nickname)=>{
 		if(users.indexOf(nickname) > -1){ //昵称已存在
@@ -14,6 +15,9 @@ io.on('connection',socket=>{ //监听前端页面的连接
 			socket.nickname = nickname;
 			users.push(nickname);
 			socket.emit('loginSuccess');
+			timer = setInterval(function(){
+				socket.emit('heartbeat');
+			},15000);
 			io.sockets.emit('system',socket.nickname,users.length,users,'login');//向所有在线用户发送上线消息
 		}
 	});
@@ -52,6 +56,7 @@ io.on('connection',socket=>{ //监听前端页面的连接
 		var index = users.indexOf(socket.nickname);
 		if(index>=0){  //离开用户为群聊用户
 			users.splice(index,1); //用户数组中删除数据
+			clearInterval(timer);
 			socket.broadcast.emit('system',socket.nickname,users.length,users,'logout');//通知除自己以外的所有人自己离开
 		}else{ //若此离开用户为私聊用户,不必再次发送退出信息到群聊
 			socket.broadcast.emit('leave',socket.nickname); //向好友发送离线消息

@@ -68,7 +68,9 @@ Chat.prototype = {
 			listTitle.style.display = "block";
 			messageInput.focus();
 		});
-		
+		this.socket.on('heartbeat',()=>{
+
+		})
 		//找人聊天
 		document.querySelector(".list").addEventListener('dblclick',function(e){
 			var requester = document.title; //请求发送者
@@ -164,7 +166,7 @@ Chat.prototype = {
 		//系统消息
 		this.socket.on('system',(nickname,userCount,users,type)=>{
 			if(pattern.length==0){
-				let msg = nickname + (type=='login'?'enter the chat room':'leave the chat room');
+				let msg = ' ' + nickname + (type=='login'?' enter the chat room':' leave the chat room');
 				This.showMessage('system', msg, 'red',pattern);//代替上面的方法
 				var status = document.getElementById("status");
 				status.innerHTML = `(${userCount})`;
